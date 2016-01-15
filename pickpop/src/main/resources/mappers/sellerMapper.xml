@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <!-- namespace : 클래스의 패키지와 유사한 용도 -->
+<mapper namespace="com.koiware.pickpop.mapper.sellerMapper">
+  
+<insert id="insertSeller" >
+  insert into tbl_seller (idseller, pwseller, nameseller, idaddress) values
+  (#{idseller}, #{pwseller}, #{nameseller}, #{idaddress})
+</insert>
+
+<select id="getWithIdPw" resultType="com.koiware.pickpop.domain.SellerVO">
+  select 
+    idseller, idaddress, nameseller, pwseller
+  from 
+    tbl_seller 
+  where 
+    idseller = #{id} and pwseller = #{pw}
+</select>
+
+<update id="keepLogin" >
+	update tbl_seller set sessionKey = #{sessionId}, sessionLimit = #{next} where idseller = #{id}
+</update>
+
+<select id="checkUserWithSessionKey" resultType="com.koiware.pickpop.domain.SellerVO">
+	select * from tbl_seller where sessionKey = #{value}  and sessionlimit > now()
+</select>	
+	
+<!-- <select id="selectMember" 
+          resultType="com.koiware.koimoticon.domain.MemberVO">
+  select 
+    * 
+  from 
+    tbl_member 
+  where userid = #{userid}
+</select>
+  
+<select id="readWithPW" 
+         resultType="com.koiware.koimoticon.domain.MemberVO">
+  select 
+    * 
+  from 
+    tbl_member 
+  where 
+    userid = #{userid} and userpw = #{userpw}
+</select> -->
+  
+</mapper>  
+

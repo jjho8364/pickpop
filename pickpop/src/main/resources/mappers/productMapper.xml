@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <!-- namespace : 클래스의 패키지와 유사한 용도 -->
+<mapper namespace="com.koiware.pickpop.mapper.productMapper">
+  
+<insert id="insertProduct" >
+  insert into tbl_product (nameproduct, priceproduct, pointproduct, noteproduct, countstock, countsell, seller_id, idcategorysml, realsize) values
+  (#{nameproduct}, #{priceproduct}, #{pointproduct}, #{noteproduct}, #{countstock}, #{countsell}, #{seller_id}, #{idcategorysml}, #{realsize})
+</insert>
+
+<select id="getProduct" resultType="com.koiware.pickpop.domain.ProductVO">
+  select 
+    nameproduct, priceproduct, pointproduct, noteproduct, countstock, countsell, seller_id, idcategorysml, realsize
+  from 
+    tbl_product 
+  where 
+    idproduct = #{idproduct}
+</select>
+
+
+<!-- <select id="selectMember" 
+          resultType="com.koiware.koimoticon.domain.MemberVO">
+  select 
+    * 
+  from 
+    tbl_member 
+  where userid = #{userid}
+</select>
+  
+<select id="readWithPW" 
+         resultType="com.koiware.koimoticon.domain.MemberVO">
+  select 
+    * 
+  from 
+    tbl_member 
+  where 
+    userid = #{userid} and userpw = #{userpw}
+</select> -->
+  
+</mapper>  
+

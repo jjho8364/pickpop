@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <!-- namespace : 클래스의 패키지와 유사한 용도 -->
+<mapper namespace="com.koiware.pickpop.mapper.addressMapper">
+
+<select id="getTime" resultType="string">
+  select now()
+</select>
+  
+<insert id="insertAddress" >
+  insert into tbl_address (address1, address2, postalcode, phone, fk_idcity) values
+  (#{address1}, #{address2}, #{postalcode}, #{phone}, #{idcity})
+  
+  <selectKey resultType="int" keyProperty="idaddress" order="AFTER">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+
+</insert>
+
+<select id="getLastId" resultType="int">
+	<![CDATA[
+		SELECT LAST_INSERT_ID();
+	]]>
+</select>
+ 
+<!-- <select id="selectMember" 
+          resultType="com.koiware.koimoticon.domain.MemberVO">
+  select 
+    * 
+  from 
+    tbl_member 
+  where userid = #{userid}
+</select>
+  
+<select id="readWithPW" 
+         resultType="com.koiware.koimoticon.domain.MemberVO">
+  select 
+    * 
+  from 
+    tbl_member 
+  where 
+    userid = #{userid} and userpw = #{userpw}
+</select> -->
+  
+</mapper>  
+
