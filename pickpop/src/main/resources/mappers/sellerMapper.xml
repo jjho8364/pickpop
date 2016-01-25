@@ -27,25 +27,7 @@
 <select id="checkUserWithSessionKey" resultType="com.koiware.pickpop.domain.SellerVO">
 	select * from tbl_seller where sessionKey = #{value}  and sessionlimit > now()
 </select>	
-	
-<!-- <select id="selectMember" 
-          resultType="com.koiware.koimoticon.domain.MemberVO">
-  select 
-    * 
-  from 
-    tbl_member 
-  where userid = #{userid}
-</select>
-  
-<select id="readWithPW" 
-         resultType="com.koiware.koimoticon.domain.MemberVO">
-  select 
-    * 
-  from 
-    tbl_member 
-  where 
-    userid = #{userid} and userpw = #{userpw}
-</select> -->
+
   
 </mapper>  
 

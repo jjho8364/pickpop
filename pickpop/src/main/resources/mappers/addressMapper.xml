@@ -5,45 +5,43 @@
   
  <!-- namespace : 클래스의 패키지와 유사한 용도 -->
 <mapper namespace="com.koiware.pickpop.mapper.addressMapper">
-
-<select id="getTime" resultType="string">
-  select now()
-</select>
   
 <insert id="insertAddress" >
-  insert into tbl_address (address1, address2, postalcode, phone, fk_idcity) values
-  (#{address1}, #{address2}, #{postalcode}, #{phone}, #{idcity})
-  
-  <selectKey resultType="int" keyProperty="idaddress" order="AFTER">
-	SELECT LAST_INSERT_ID()
-  </selectKey>
-
+	  insert into tbl_address (address1, address2, postalcode, phone, fk_idcity) values
+	  (#{address1}, #{address2}, #{postalcode}, #{phone}, #{idcity})
+	  
+	  <selectKey resultType="int" keyProperty="idaddress" order="AFTER">
+		SELECT LAST_INSERT_ID()
+	  </selectKey>
 </insert>
 
-<select id="getLastId" resultType="int">
+
+<select id="getAddress" resultType="com.koiware.pickpop.domain.AddressVO">
+	  select 
+	    address1, address2, postalcode, phone, fk_idcity
+	  from 
+	    tbl_address 
+	  where 
+	    idaddress = #{idaddress}
+</select>
+
+<select id="listCity" resultType="com.koiware.pickpop.domain.CityVO">
 	<![CDATA[
-		SELECT LAST_INSERT_ID();
+	 select 
+	   idcity, city
+	 from 
+	   tbl_city 
 	]]>
 </select>
- 
-<!-- <select id="selectMember" 
-          resultType="com.koiware.koimoticon.domain.MemberVO">
-  select 
-    * 
-  from 
-    tbl_member 
-  where userid = #{userid}
-</select>
   
-<select id="readWithPW" 
-         resultType="com.koiware.koimoticon.domain.MemberVO">
-  select 
-    * 
-  from 
-    tbl_member 
-  where 
-    userid = #{userid} and userpw = #{userpw}
-</select> -->
-  
+<select id="getCity" resultType="com.koiware.pickpop.domain.CityVO">
+	  select 
+	    idcity, city
+	  from 
+	    tbl_city 
+	  where 
+	    idcity = #{idcity}
+</select>  
+
 </mapper>  
 
