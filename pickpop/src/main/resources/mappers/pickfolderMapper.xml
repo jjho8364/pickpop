@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <!-- namespace : 클래스의 패키지와 유사한 용도 -->
+<mapper namespace="com.koiware.pickpop.mapper.addressMapper">
+  
+  
+<insert id="insertPickFolder" >
+	<![CDATA[
+	insert into tbl_pickfolder (namefolder, user_id) 
+	values (#{namefolder}, #{user_id})
+	<selectKey resultType="int" keyProperty="idaddress" order="AFTER">
+		SELECT LAST_INSERT_ID()
+	</selectKey>
+	]]>
+</insert>
+
+<select id="listPickFolderWithUserId" resultType="com.koiware.pickpop.domain.PickFolderVO">
+	<![CDATA[
+	 select 
+	   	*
+	 from 
+	   	tbl_pickfolder
+	 where
+	 	user_id = #{user_id} 
+	]]>
+</select>
+  
+</mapper>  
+

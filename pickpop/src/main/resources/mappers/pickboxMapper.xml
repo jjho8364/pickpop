@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <!-- namespace : 클래스의 패키지와 유사한 용도 -->
+<mapper namespace="com.koiware.pickpop.mapper.pickboxMapper">
+
+<!-- about pick folder -->  
+<insert id="insertPickFolder" >
+	  insert into tbl_pickfolder (namefolder, user_id) values
+	  (#{namefolder}, #{user_id})
+	  
+	  <selectKey resultType="int" keyProperty="idpickfolder" order="AFTER">
+		SELECT LAST_INSERT_ID()
+	  </selectKey>
+</insert>
+
+<select id="deletePickFolder">
+	  delete from tbl_pickfolder where idpickfolder = #{idpickfolder} 
+</select>
+
+<select id="listPickFolder" resultType="PickFolderVO">
+	<![CDATA[
+		select idpickfolder, namefolder 
+			from tbl_pickfolder 
+		where user_id=#{user_id}
+			order by idpickfolder desc, lastupdate desc
+	]]>
+</select>
+
+<!-- about pick content -->
+<insert id="insertPickContent" >
+	  insert into tbl_pickcontent (user_id, idproduct, idpickfolder) values
+	  (#{user_id}, #{idproduct}, #{idpickfolder})
+	  
+	  <selectKey resultType="int" keyProperty="idpickcontent" order="AFTER">
+		SELECT LAST_INSERT_ID()
+	  </selectKey>
+</insert>
+
+<select id="deletePickContent">
+	  delete from tbl_pickcontent where idpickcontent = #{idpickcontent} 
+</select>
+
+<select id="listPickContent" resultType="PickContentVO">
+	<![CDATA[
+		select idpickcontent, user_id, idproduct, idpickfolder
+			from tbl_pickcontent 
+		where idpickfolder=#{idpickfolder}
+			order by idpickcontent desc, lastupdate desc
+	]]>
+</select>
+
+</mapper>  
+

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <!-- namespace : 클래스의 패키지와 유사한 용도 -->
+<mapper namespace="com.koiware.pickpop.mapper.pickcontentMapper">
+  
+<insert id="insertPickContent" >
+	<![CDATA[
+	  insert into tbl_pickcontent (idpickfolder, idproduct) 
+	  values
+	  (#{idpickfolder}, #{idproduct})
+	  <selectKey resultType="int" keyProperty="idpickcontent" order="AFTER">
+		SELECT LAST_INSERT_ID()
+	  </selectKey>
+	]]>
+</insert>
+
+<select id="listPickContentWithFolderId" resultType="com.koiware.pickpop.domain.PickContentVO">
+	<![CDATA[
+	  select 
+	    *
+	  from 
+	    tbl_pickcontent 
+	  where 
+	    idpickfolder = #{idpickfolder}
+	]]>
+</select>
+
+<select id="listPickContentWithProductId" resultType="com.koiware.pickpop.domain.PickContentVO">
+	<![CDATA[
+	  select 
+	    *
+	  from 
+	    tbl_pickcontent 
+	  where 
+	    idproduct = #{idproduct}
+	]]>
+</select>
+  
+</mapper>  
+

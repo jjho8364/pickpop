@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <!-- namespace : 클래스의 패키지와 유사한 용도 -->
+<mapper namespace="com.koiware.pickpop.mapper.commentMapper">
+  
+<insert id="insertComment" >
+	<![CDATA[
+	  insert into tbl_comment (idwriter, idrecommandproduct, comment, idpopbox, idproduct) 
+	  values 
+	  (#{idwriter}, #{idrecommandproduct}, #{comment}, #{idpopbox}, #{idproduct})
+	  <selectKey resultType="int" keyProperty="idcomment" order="AFTER">
+		SELECT LAST_INSERT_ID()
+	  </selectKey>
+	]]>
+</insert>
+
+<update id="updateProductLikeCnt">
+	<![CDATA[
+  	update tbl_product
+		set countlike = (select count (*) from tbl_comment where tbl_comment.idproduct = #{idproduct})
+	]]>
+</update>
+
+<update id="updatePickboxLikeCnt">
+	<![CDATA[
+  	update tbl_pickbox
+		set countlike = (select count (*) from tbl_comment where tbl_comment.idproduct = #{idpickbox})
+	]]>
+</update>
+
+<select id="listCommentWithPopBoxId" resultType="com.koiware.pickpop.domain.CommentVO">
+	<![CDATA[
+	  select 
+	    *
+	  from 
+	    tbl_comment 
+	  where 
+	    idpopbox = #{idpopbox}
+	]]>
+</select>
+  
+<select id="listCommentWithProductId" resultType="com.koiware.pickpop.domain.CommentVO">
+	<![CDATA[
+	  select 
+	    *
+	  from 
+	    tbl_comment 
+	  where 
+	    idproduct = #{idproduct}
+	]]>
+</select>
+</mapper>  
+

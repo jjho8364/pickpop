@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <!-- namespace : 클래스의 패키지와 유사한 용도 -->
+<mapper namespace="com.koiware.pickpop.mapper.popboxMapper">
+  
+<insert id="insertPopBox" >
+	<![CDATA[
+	  insert into tbl_popbox (status, user_id, idfriendpopbox, notepopbox) 
+	  values
+	  (#{status}, #{user_id}, #{idfriendpopbox}, #{notepopbox})
+	  <selectKey resultType="int" keyProperty="idpopbox" order="AFTER">
+		SELECT LAST_INSERT_ID()
+	  </selectKey>
+	]]>
+</insert>
+
+<select id="listPickContentWithUserId" resultType="com.koiware.pickpop.domain.PopBoxVO">
+	<![CDATA[
+	  select 
+	    *
+	  from 
+	    tbl_popbox 
+	  where 
+	    user_id = #{user_id}
+	]]>
+</select>
+  
+</mapper>  
+

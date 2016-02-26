@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <!-- namespace : 클래스의 패키지와 유사한 용도 -->
+<mapper namespace="com.koiware.pickpop.mapper.rtviewMapper">
+  
+<insert id="insertRtView" >
+	<![CDATA[
+	  insert into tbl_rtview (idproduct, idpopbox, type) 
+	  values
+	  (#{idproduct}, #{idpopbox}, #{type})
+	  <selectKey resultType="int" keyProperty="idrtview" order="AFTER">
+		SELECT LAST_INSERT_ID()
+	  </selectKey>
+	]]>
+</insert>
+
+<select id="listRtView" resultType="com.koiware.pickpop.domain.RtViewVO">
+	<![CDATA[
+	  select 
+	    *
+	  from 
+	    tbl_rtview 
+	]]>
+</select>
+
+<select id="listRtViewWithFilter" resultType="com.koiware.pickpop.domain.RtViewVO">
+	<![CDATA[
+	  select 
+	    *
+	  from 
+	    tbl_rtview 
+	  where 
+	    idproduct = (
+	    	select idproduct from tbl_product 
+	    	where sex = #{sex} AND age=#{age} AND color=#{color} AND idstyle=#{idstyle} AND idcategorysml=#{idcategorysml}
+	    )	    		 
+	]]>
+</select>
+  
+</mapper>  
+

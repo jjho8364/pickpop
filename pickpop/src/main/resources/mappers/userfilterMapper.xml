@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <!-- namespace : 클래스의 패키지와 유사한 용도 -->
+<mapper namespace="com.koiware.pickpop.mapper.pickcontentMapper">
+  
+<insert id="insertUserFilter" >
+	<![CDATA[
+	  insert into tbl_userfilter (idstyle, idcategorysml, sex, age, color. user_id) 
+	  values
+	  (#{idstyle}, #{idcategorysml}, #{sex}, #{age}, #{color}, #{user_id})
+	  <selectKey resultType="int" keyProperty="iduserfilter" order="AFTER">
+		SELECT LAST_INSERT_ID()
+	  </selectKey>
+	]]>
+</insert>
+
+<select id="listUserFilterWithUserID" resultType="com.koiware.pickpop.domain.UserFilterVO">
+	<![CDATA[
+	  select 
+	    *
+	  from 
+	    tbl_userfilter
+	  where 
+	    user_id = #{user_id}
+	]]>
+</select>
+  
+</mapper>  
+
