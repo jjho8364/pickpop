@@ -25,8 +25,7 @@ public class SellerController {
 		
 	}
 	
-//	@RequestMapping(value="/login", method=RequestMethod.POST)
-	@RequestMapping(value="/loginPost", method=RequestMethod.POST)
+	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public void loginPOST(LoginDto dto, HttpSession session, Model model ) throws Exception {
 		SellerVO vo = service.login(dto);
 		

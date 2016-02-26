@@ -10,10 +10,54 @@ public class ProductVO extends BaseVO{
 	String noteproduct;
 	int countstock;
 	int countsell;
-	int seller_id;
 	int idcategorysml;
+	int seller_id;
 	String realsize;
 	
+	int color;
+	int sex;
+	int age;
+	int idstyle;
+	
+	int countcomment;
+	int countlike;
+	
+	public int getCountcomment() {
+		return countcomment;
+	}
+	public void setCountcomment(int countcomment) {
+		this.countcomment = countcomment;
+	}
+	public int getCountlike() {
+		return countlike;
+	}
+	public void setCountlike(int countlike) {
+		this.countlike = countlike;
+	}
+	public int getColor() {
+		return color;
+	}
+	public void setColor(int color) {
+		this.color = color;
+	}
+	public int getSex() {
+		return sex;
+	}
+	public void setSex(int sex) {
+		this.sex = sex;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public int getIdstyle() {
+		return idstyle;
+	}
+	public void setIdstyle(int idstyle) {
+		this.idstyle = idstyle;
+	}
 	public int getSeller_id() {
 		return seller_id;
 	}

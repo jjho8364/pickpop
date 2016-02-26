@@ -56,7 +56,7 @@ public class DbTest {
 		SellerVO vo = new SellerVO();
 		vo.setIdseller("test");
 		vo.setPwseller("1234test~!@#");
-		vo.setNameseller("ȫ�浿");
+		vo.setNameseller("ȫ�浿");
 		
 		sellerDao.insertSeller(vo);
 	}*/

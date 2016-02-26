@@ -17,6 +17,19 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	  private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 
 	  @Override
+	  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+	    HttpSession session = request.getSession();
+
+	    if (session.getAttribute(LOGIN) != null) {
+	      logger.info("clear login data before");
+	      session.removeAttribute(LOGIN);
+	    }
+
+	    return true;
+	  }
+	  
+	  @Override
 	  public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 
 	    HttpSession session = request.getSession();
@@ -42,17 +55,4 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	      response.sendRedirect(dest != null ? (String) dest : "/");
 	    }
 	  }
-
-	  @Override
-	  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
-	    HttpSession session = request.getSession();
-
-	    if (session.getAttribute(LOGIN) != null) {
-	      logger.info("clear login data before");
-	      session.removeAttribute(LOGIN);
-	    }
-
-	    return true;
-	  }
-	}
+}
