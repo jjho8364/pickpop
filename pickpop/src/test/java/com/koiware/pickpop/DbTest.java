@@ -22,8 +22,8 @@ import com.koiware.pickpop.service.SellerService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
 public class DbTest {
-/*	
- * for just mybatis test
+	/*
+	//for just mybatis test
 	@Inject
 	private SqlSessionFactory sqlFactory;
 	
@@ -39,28 +39,34 @@ public class DbTest {
 		} catch(Exception e){
 			e.printStackTrace();
 		}
-	}*/
+	}
+//*/
 
-/*	
- * for just dao test
-    @Inject
-	private SellerDAO sellerDao;
+	/*
+	// for just dao test
 	
 	@Test
 	public void testTime() throws Exception {
 		System.out.println(sellerDao.getTime());
 	}
 	
-	@Test
+	//*/
+    @Inject
+	private SellerDAO sellerDao;
+
+    @Test
 	public void testInsertSeller() throws Exception {
 		SellerVO vo = new SellerVO();
 		vo.setIdseller("test");
 		vo.setPwseller("1234test~!@#");
-		vo.setNameseller("ȫ�浿");
+		vo.setNameseller("koiware");
 		
 		sellerDao.insertSeller(vo);
-	}*/
+	}
+    
+	//*/
 	
+	/*
 	@Inject	private SellerService sellerService;
     @Inject	private SellerDAO sellerDao;
     @Inject private AddressDAO addressDao;
@@ -81,16 +87,19 @@ public class DbTest {
 		seller.setPwseller("pwseller");
 		seller.setIdaddress(0);
 
-//		sellerService.addSeller(seller, address);
+		sellerService.addSeller(seller, address);
+
 		
-		LoginDto login = new LoginDto();
-		login.setId(seller.getIdseller());
-		login.setPw(seller.getPwseller());
-		SellerVO seller1 = sellerDao.getSellerWithIdPw(login);
-		seller1.about();
+//		LoginDto login = new LoginDto();
+//		login.setId(seller.getIdseller());
+//		login.setPw(seller.getPwseller());
+//		SellerVO seller1 = sellerDao.getSellerWithIdPw(login);
+//		seller1.about();
 	}
+	//*/
 	
-	/*@Inject	private ProductDAO productDao;
+	/*
+	@Inject	private ProductDAO productDao;
 	
 	@Test
 	public void testProductService() throws Exception {
@@ -107,5 +116,6 @@ public class DbTest {
 		product.setSeller_id(15);
 		
 		productDao.insertProduct(product);
-	}*/
+	}
+	//*/
 }
